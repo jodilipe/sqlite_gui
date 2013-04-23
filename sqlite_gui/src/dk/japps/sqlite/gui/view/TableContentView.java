@@ -2,19 +2,17 @@ package dk.japps.sqlite.gui.view;
 
 import javax.swing.*;
 
-import dk.japps.sqlite.gui.logic.*;
+import dk.japps.sqlite.gui.model.*;
 
 public class TableContentView implements View {
-	private String databaseName;
-	private String tableName;
+	private Table table;
 	
-	public TableContentView(String databaseName, String tableName) {
-		this.databaseName = databaseName;
-		this.tableName = tableName;
+	public TableContentView(Table table) {
+		this.table = table;
 	}
 	
 	@Override
-	public JComponent build() {
-		return new JTable(new TableContentViewModel(new DatabaseLogic().getTableContent(databaseName, tableName)));
+	public JTable build() {
+		return new JTable(new TableContentViewModel(table));
 	}
 }

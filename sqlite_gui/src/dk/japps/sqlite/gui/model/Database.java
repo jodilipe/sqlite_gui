@@ -32,4 +32,13 @@ public class Database {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Table getTable(String tableName) {
+		for (Table table : getTables()) {
+			if (table.getName().equals(tableName)) {
+				return table;
+			}
+		}
+		return null;
+	}
 }

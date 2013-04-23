@@ -30,7 +30,7 @@ public class TableContentViewModel implements TableModel {
 
 	@Override
 	public int getColumnCount() {
-		return !table.getRows().isEmpty() ? table.getRows().get(0).size() : 0;
+		return table.getContent().getColumns().size();
 	}
 
 	@Override
@@ -40,12 +40,12 @@ public class TableContentViewModel implements TableModel {
 
 	@Override
 	public int getRowCount() {
-		return table.getRows().size();
+		return table.getContent().getRows().size();
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return exists(rowIndex, columnIndex) ? table.getRows().get(rowIndex).get(columnIndex) : null;
+		return exists(rowIndex, columnIndex) ? table.getContent().getRows().get(rowIndex).get(columnIndex) : null;
 	}
 
 	@Override
@@ -61,12 +61,12 @@ public class TableContentViewModel implements TableModel {
 	@Override
 	public void setValueAt(Object value, int rowIndex, int columnIndex) {
 		if (exists(rowIndex, columnIndex)) {
-			table.getRows().get(rowIndex).set(columnIndex, (String) value);
+			table.getContent().getRows().get(rowIndex).set(columnIndex, (String) value);
 		}
 	}
 	
 	public boolean exists(int rowIndex, int columnIndex) {
-		return table.getRows().size() > rowIndex && table.getRows().get(rowIndex).size() > columnIndex;
+		return table.getContent().getRows().size() > rowIndex && table.getContent().getColumns().size() > columnIndex;
 	}
 
 	public List<TableModelListener> getTableModelListeners() {
